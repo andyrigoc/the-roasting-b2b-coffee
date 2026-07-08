@@ -2,14 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://base44.com/logo_v2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Roasting</title>
+    <link rel="manifest" href="/manifest.json" />
+    <title>Base44 APP</title>
   </head>
   <body>
-    <main style="font-family: sans-serif; padding: 24px; max-width: 720px; margin: 0 auto;">
-      <h1>The Roasting</h1>
-      <p>This deployment should run from the app folder, not redirect to localhost.</p>
-      <p>Set Vercel Root Directory to <strong>the-roasting-b2b-coffee-final</strong>.</p>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
