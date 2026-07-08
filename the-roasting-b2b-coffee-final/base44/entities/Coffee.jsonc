@@ -1,0 +1,67 @@
+{
+  "name": "Coffee",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "Blend",
+        "Monorigin"
+      ],
+      "description": "Product category"
+    },
+    "commercial_name": {
+      "type": "string",
+      "description": "Commercial product name"
+    },
+    "country": {
+      "type": "string",
+      "description": "Origin country or countries"
+    },
+    "region": {
+      "type": "string",
+      "description": "Growing region"
+    },
+    "variety": {
+      "type": "string",
+      "description": "Coffee variety (Arabica, Robusta, or blend ratio)"
+    },
+    "sub_variety": {
+      "type": "string",
+      "description": "Sub-variety details"
+    },
+    "acidity": {
+      "type": "number",
+      "description": "Acidity score out of 10"
+    },
+    "body": {
+      "type": "number",
+      "description": "Body score out of 10"
+    },
+    "roast_agtron": {
+      "type": "number",
+      "description": "Roast level (Agtron scale)"
+    },
+    "altitude": {
+      "type": "string",
+      "description": "Growing altitude"
+    },
+    "tasting_notes": {
+      "type": "string",
+      "description": "Flavor and aroma description"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL"
+    },
+    "featured_rank": {
+      "type": "number",
+      "description": "Featured display order (1, 2, 3 for top featured)"
+    }
+  },
+  "required": [
+    "category",
+    "commercial_name",
+    "country"
+  ]
+}

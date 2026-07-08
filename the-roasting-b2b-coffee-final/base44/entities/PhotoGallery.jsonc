@@ -1,0 +1,39 @@
+{
+  "name": "PhotoGallery",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Image name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Hero",
+        "Background",
+        "Product",
+        "Story",
+        "Banner",
+        "Other"
+      ],
+      "description": "Image category"
+    },
+    "used_in": {
+      "type": "string",
+      "description": "Page or component where the image is used"
+    },
+    "original_url": {
+      "type": "string",
+      "description": "Original URL reference from the codebase"
+    },
+    "stored_url": {
+      "type": "string",
+      "description": "URL of the image stored in managed storage"
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "original_url"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "The Roasting - B2B Coffee Partner (Copy)",
+  "site": {
+    "installCommand": "npm install",
+    "buildCommand": "npm run build",
+    "serveCommand": "npm run dev",
+    "outputDirectory": "./dist"
+  }
+}
