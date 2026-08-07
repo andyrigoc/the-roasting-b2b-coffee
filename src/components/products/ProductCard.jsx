@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Mountain } from "lucide-react";
@@ -43,7 +42,7 @@ export default function ProductCard({ product, onClick, index }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="absolute top-3 left-3">
           <Badge className={`${product.category === 'Blend' ? 'bg-[#704214]' : 'bg-[#201e20]'} text-white text-xs`}>
-            {product.category}
+            {product.category === 'Monorigin' ? 'Single Origin' : product.category}
           </Badge>
         </div>
         {product.roast_agtron != null && (

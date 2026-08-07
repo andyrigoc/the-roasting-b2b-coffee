@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SITE_IMAGES } from "../shared/SiteImages";
 
 export default function CTABanner() {

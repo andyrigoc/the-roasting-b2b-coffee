@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion } from "framer-motion";
@@ -65,7 +64,7 @@ export default function ProductCarousel({ products, loading }) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       <div className="absolute top-4 left-4">
                         <Badge className={`${product.category === 'Blend' ? 'bg-[#704214]' : 'bg-[#201e20]'} text-white`}>
-                          {product.category}
+                          {product.category === 'Monorigin' ? 'Single Origin' : product.category}
                         </Badge>
                       </div>
                     </div>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Coffee } from "@/entities/Coffee";
-import { motion } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { Coffee } from "@/api/entities";
 import { Search, ArrowUpDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -100,7 +99,7 @@ export default function ProductsPage() {
             </div>
             <div className="mt-6 bg-black/30 backdrop-blur-sm rounded-lg px-6 py-4 max-w-4xl mx-auto">
               <p className="text-base md:text-lg text-white/90">
-                At The Roasting, each coffee starts with carefully selected green beans, stored by origin in dedicated silos and roasted in Milan using custom profiles for every mono-origin. Precision weighing, real-time temperature control and air cooling ensure that the blends and single origins you see here are consistent, repeatable and ready for busy cafés and restaurants.
+                At The Roasting, each coffee starts with carefully selected green beans, stored by origin in dedicated silos and roasted in Milan using custom profiles for every single origin. Precision weighing, real-time temperature control and air cooling ensure that the blends and single origins you see here are consistent, repeatable and ready for busy cafés and restaurants.
               </p>
             </div>
           </div>

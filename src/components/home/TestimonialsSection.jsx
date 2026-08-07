@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
@@ -43,7 +43,7 @@ export default function TestimonialsSection() {
     <section className="py-24 bg-[#201e20] relative overflow-hidden">
       <img
         src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1800&q=80"
-        alt="Interior of a modern cafe"
+        alt="Interior of a modern café"
         className="absolute inset-0 w-full h-full object-cover opacity-20 sepia"
         style={{ filter: 'sepia(60%)' }}
       />

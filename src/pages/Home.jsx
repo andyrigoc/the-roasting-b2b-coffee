@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Coffee } from "@/entities/Coffee";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
-import { ChevronRight, Scale, Flame, Coffee as CoffeeIcon, Star, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Coffee } from "@/api/entities";
 import { localCoffeeProducts } from "@/data/coffeeProducts";
 
 import HeroSection from "../components/home/HeroSection";

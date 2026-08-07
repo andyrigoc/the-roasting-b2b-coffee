@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Menu, X } from "lucide-react";
 
-export default function Layout({ children, currentPageName }) {
+export default function Layout({ children }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,21 @@ export default function Layout({ children, currentPageName }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
   
   const navigation = [
     { name: "Home", href: createPageUrl("Home") },
@@ -70,15 +86,23 @@ export default function Layout({ children, currentPageName }) {
       `}</style>
 
       {/* Navigation Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || mobileMenuOpen ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-2.5 sm:py-3">
             {/* Logo */}
-            <Link to={createPageUrl("Home")} className={`font-title text-2xl font-bold transition-colors duration-300 ${scrolled ? 'text-[#201e20]' : 'text-white'}`}>
-              The Roasting
+            <Link
+              to={createPageUrl("Home")}
+              className="relative z-50 inline-flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#704214]"
+              aria-label="The Roasting — Home"
+            >
+              <img
+                src="/Logo.png"
+                alt="The Roasting, Tradizione Italiana"
+                className="h-20 w-20 object-contain sm:h-24 sm:w-24"
+              />
             </Link>
 
-            {/* Navigation */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
                 <Link
@@ -102,17 +126,64 @@ export default function Layout({ children, currentPageName }) {
             </nav>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Link
-                to={createPageUrl("Connect")}
-                className="bg-[#704214] text-white px-4 py-2 rounded-full text-sm font-medium"
-              >
-                Sample
-              </Link>
-            </div>
+            <button
+              className="md:hidden relative z-50 p-2 rounded-lg"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-[#201e20]" />
+              ) : (
+                <Menu className={`w-6 h-6 transition-colors duration-300 ${scrolled ? 'text-[#201e20]' : 'text-white'}`} />
+              )}
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`md:hidden fixed inset-0 bg-white z-40 transition-all duration-300 ease-in-out ${
+          mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center min-h-screen gap-6 px-6 pt-20 pb-10">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-2xl font-semibold font-title transition-colors duration-200 ${
+                isActivePage(item.href)
+                  ? 'text-[#704214]'
+                  : 'text-[#201e20] hover:text-[#704214]'
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <Link
+            to={createPageUrl("PhotoGallery")}
+            onClick={() => setMobileMenuOpen(false)}
+            className={`text-2xl font-semibold font-title transition-colors duration-200 ${
+              location.pathname === '/PhotoGallery'
+                ? 'text-[#704214]'
+                : 'text-[#201e20] hover:text-[#704214]'
+            }`}
+          >
+            Photo Gallery
+          </Link>
+          <div className="mt-4 pt-4 border-t border-gray-200 w-48 text-center">
+            <Link
+              to={createPageUrl("Connect")}
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-block bg-[#704214] text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-[#201e20] transition-all duration-200"
+            >
+              Request Sample
+            </Link>
+          </div>
+        </div>
+      </div>
 
       {/* Main Content */}
       <main className="flex-1">
@@ -126,10 +197,20 @@ export default function Layout({ children, currentPageName }) {
             {/* Company Info */}
             <div>
               <div className="mb-4">
-                 <span className="font-title text-2xl font-bold">The Roasting</span>
+                <Link
+                  to={createPageUrl("Home")}
+                  className="inline-flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  aria-label="The Roasting — Home"
+                >
+                  <img
+                    src="/Logo.png"
+                    alt="The Roasting, Tradizione Italiana"
+                    className="h-32 w-32 object-contain"
+                  />
+                </Link>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Well-roasted coffee from Milan to the UK. Serving independent cafés and restaurants since 1947.
+                Authentic coffee from Milan for independent cafés and restaurants across the UK.
               </p>
             </div>
 
@@ -143,9 +224,9 @@ export default function Layout({ children, currentPageName }) {
                   <Mail className="w-4 h-4" />
                   <a href="mailto:info@theroastingltd.co.uk" className="hover:text-white transition-colors">info@theroastingltd.co.uk</a>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>London, UK</span>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>Red Lion Road<br />Surbiton, KT6<br />UK</span>
                 </div>
               </div>
             </div>
@@ -156,7 +237,7 @@ export default function Layout({ children, currentPageName }) {
                 Quick Links
               </h4>
               <div className="space-y-2 text-sm">
-                <div><Link to={createPageUrl("Products")} className="hover:text-gray-300 transition-colors">Our Coffee</Link></div>
+                <div><Link to={createPageUrl("Products")} className="hover:text-gray-300 transition-colors">Products</Link></div>
                 <div><Link to={createPageUrl("Connect")} className="hover:text-gray-300 transition-colors">Request Sample</Link></div>
                 <div><Link to={createPageUrl("OurStory")} className="hover:text-gray-300 transition-colors">Our Story</Link></div>
               </div>

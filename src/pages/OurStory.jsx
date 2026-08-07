@@ -1,6 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { Award, Users, Leaf, FileCheck } from "lucide-react";
+import { Coffee, Wrench, Handshake, TrendingUp } from "lucide-react";
 import HeroBackground from "../components/shared/HeroBackground";
 import { SITE_IMAGES } from "../components/shared/SiteImages";
 
@@ -18,7 +17,7 @@ export default function OurStoryPage() {
     },
     {
       title: "Balanced profiles",
-      description: "Each mono-origin has its own roasting curve: temperature, timing and development are tuned to that specific coffee. Advanced sensors and monitoring devices allow the roaster to adjust in real time, creating balanced profiles that highlight origin character without tipping into harsh acidity or flat bitterness.",
+      description: "Each single origin has its own roasting curve: temperature, timing and development are tuned to that specific coffee. Advanced sensors and monitoring devices allow the roaster to adjust in real time, creating balanced profiles that highlight origin character without tipping into harsh acidity or flat bitterness.",
       image: SITE_IMAGES.ourStoryBalancedProfiles
     }
   ];
@@ -159,7 +158,7 @@ export default function OurStoryPage() {
           </motion.div>
         </section>
 
-        {/* Certifications */}
+        {/* Our Principles */}
         <section>
           <motion.div 
             className="text-center mb-12"
@@ -169,36 +168,36 @@ export default function OurStoryPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 title-section">
-              Our commitments
+              Our Principles
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              All our coffees are delivered with certification and traceability documents
+              The values that guide everything we do
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: FileCheck,
-                title: "Full Traceability",
-                description: "Complete documentation and certification for every batch, ensuring transparency from origin to cup."
+                icon: Coffee,
+                title: "Authentic Coffee",
+                description: "We select coffees for their quality, character and consistency, creating blends and single origins that remain true to the traditions of Italian roasting while meeting the expectations of today's speciality coffee market."
               },
               {
-                icon: Leaf,
-                title: "Organic Certified",
-                description: "Many of our single origins are certified organic, supporting sustainable farming practices."
+                icon: Wrench,
+                title: "Craftsmanship",
+                description: "Every coffee is developed with the same attention to detail that has shaped our roasting heritage for decades. We combine traditional roasting expertise with modern quality control to achieve balanced, reliable results in every batch."
               },
               {
-                icon: Users,
-                title: "Fairtrade Partnership",
-                description: "We work directly with farmers through Fairtrade certified cooperatives for ethical sourcing."
+                icon: Handshake,
+                title: "Long-Term Partnerships",
+                description: "We believe successful coffee businesses are built on trust. Whether working with cafés, restaurants, retailers or distributors, we aim to build long-term relationships through reliable service, consistent quality and honest communication."
               },
               {
-                icon: Award,
-                title: "Rainforest Alliance",
-                description: "Supporting biodiversity and sustainable livelihoods in coffee-growing communities."
+                icon: TrendingUp,
+                title: "Continuous Improvement",
+                description: "Coffee is constantly evolving, and so are we. We continually refine our products, processes and customer experience, always looking for ways to improve while remaining true to our Italian roasting philosophy."
               }
-            ].map((cert, index) => (
+            ].map((principle, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -208,13 +207,13 @@ export default function OurStoryPage() {
                 className="bg-white/50 backdrop-blur-lg rounded-xl p-8 shadow-lg text-center border border-white/30"
               >
                 <div className="w-16 h-16 bg-[#622700]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <cert.icon className="w-8 h-8 text-[#622700]" />
+                  <principle.icon className="w-8 h-8 text-[#622700]" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 title-card">
-                  {cert.title}
+                  {principle.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {cert.description}
+                  {principle.description}
                 </p>
               </motion.div>
             ))}

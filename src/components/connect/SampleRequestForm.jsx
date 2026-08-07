@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
 import { localCoffeeProducts } from "@/data/coffeeProducts";
 
 const steps = [
@@ -19,6 +19,8 @@ const steps = [
 
 export default function SampleRequestForm({ onSubmitted }) {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [formData, setFormData] = useState({
     businessName: "",
     businessType: "",
@@ -64,29 +66,36 @@ export default function SampleRequestForm({ onSubmitted }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { base44 } = await import("@/api/base44Client");
-    const body = `
-New Sample Request from ${formData.name} (${formData.email})
 
-Business: ${formData.businessName} — ${formData.businessType} — ${formData.location}
-Current Supplier: ${formData.currentSupplier || "N/A"}
-Monthly Volume: ${formData.coffeeVolume}
-Products of Interest: ${formData.interestedProducts.join(", ") || "None specified"}
-Position: ${formData.position || "N/A"}
-Phone: ${formData.phone || "N/A"}
-Delivery Address: ${formData.deliveryAddress}
-Preferred Delivery Time: ${formData.preferredDeliveryTime || "N/A"}
-Comments: ${formData.comments || "None"}
-    `.trim();
+    if (isSubmitting) {
+      return;
+    }
 
-    await base44.integrations.Core.SendEmail({
-      to: "info@theroastingltd.co.uk",
-      subject: `New Sample Request — ${formData.businessName}`,
-      body
-    });
-    onSubmitted();
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "We could not send your request right now. Please try again.");
+      }
+
+      onSubmitted();
+    } catch (error) {
+      setSubmitError(error.message || "We could not send your request right now. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
   return (
     <div className="bg-white/70 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden border border-white/30">
       {/* Progress Bar */}
@@ -395,19 +404,27 @@ Comments: ${formData.comments || "None"}
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-[#f5f1ec] border border-[#e8ddd2] rounded-xl p-5">
                 <h3 
-                  className="font-semibold text-blue-900 mb-2 title-card"
+                  className="font-semibold text-[#201e20] mb-3 title-card"
                 >
                   What happens next?
                 </h3>
                 <ul 
-                  className="text-sm text-blue-800 space-y-1"
+                  className="text-sm text-[#201e20]/80 space-y-2"
                 >
-                  <li>• We'll contact you within 24 hours</li>
-                  <li>• Free samples delivered to your door</li>
-                  <li>• Personalized tasting notes included</li>
-                  <li>• Follow-up call to discuss your needs</li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
+                    <span>We'll contact you within 24 hours</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
+                    <span>Free samples delivered to your door</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
+                    <span>Follow-up call to discuss your needs</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -443,13 +460,29 @@ Comments: ${formData.comments || "None"}
           ) : (
             <Button
               type="submit"
+              disabled={isSubmitting}
               className="bg-[#622700] hover:bg-[#4a1e00] flex items-center gap-2 rounded-full"
             >
-              Submit Request
-              <ArrowRight className="w-4 h-4" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Submit Request
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </Button>
           )}
         </div>
+
+        {submitError && (
+          <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {submitError}
+          </div>
+        )}
       </form>
     </div>
   );

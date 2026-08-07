@@ -1,8 +1,6 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Mountain, Flame, Droplets, Coffee } from "lucide-react";
+import { X, Mountain, Flame, Coffee } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 function ScoreBar({ value, max = 10, label }) {
   const percentage = (value / max) * 100;
@@ -75,7 +73,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
             {/* Title Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <Badge className={`${product.category === 'Blend' ? 'bg-[#704214]' : 'bg-[#201e20]'} text-white mb-3`}>
-                {product.category}
+                {product.category === 'Monorigin' ? 'Single Origin' : product.category}
               </Badge>
               <h2 className="title-hero text-2xl md:text-3xl text-white">
                 {product.commercial_name}
