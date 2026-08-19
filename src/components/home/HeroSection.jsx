@@ -13,7 +13,7 @@ export default function HeroSection() {
       priority={true}
       className="h-screen"
     >
-      <div className="h-full flex flex-col justify-center items-center text-center text-white px-6">
+      <div className="h-full flex flex-col justify-center items-center text-center text-white px-6 pt-16 md:pt-20 lg:pt-24">
         <motion.div 
           className="space-y-8"
           initial={{ opacity: 0, y: 50 }}
