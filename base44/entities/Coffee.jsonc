@@ -6,7 +6,7 @@
       "type": "string",
       "enum": [
         "Blend",
-        "Monorigin"
+        "Single Origin"
       ],
       "description": "Product category"
     },
@@ -48,7 +48,7 @@
     },
     "tasting_notes": {
       "type": "string",
-      "description": "Flavor and aroma description"
+      "description": "Flavour and aroma description"
     },
     "image_url": {
       "type": "string",

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import HeroBackground from "../components/shared/HeroBackground";
 import { SITE_IMAGES } from "../components/shared/SiteImages";
-import { localCoffeeProducts } from "@/data/coffeeProducts";
+import { localCoffeeProducts, normaliseCoffeeProduct } from "@/data/coffeeProducts";
 
 import ProductCard from "../components/products/ProductCard";
 import ProductDetailModal from "../components/products/ProductDetailModal";
@@ -29,10 +29,10 @@ export default function ProductsPage() {
   const loadProducts = async () => {
     try {
       const data = await Coffee.list('-created_date');
-      setProducts(data?.length ? data : localCoffeeProducts);
+      setProducts((data?.length ? data : localCoffeeProducts).map(normaliseCoffeeProduct));
     } catch (error) {
       console.error('Error loading products:', error);
-      setProducts(localCoffeeProducts);
+      setProducts(localCoffeeProducts.map(normaliseCoffeeProduct));
     } finally {
       setLoading(false);
     }
@@ -94,12 +94,12 @@ export default function ProductsPage() {
             </h1>
             <div className="bg-black/40 backdrop-blur-sm rounded-lg px-6 py-3 inline-block">
               <p className="text-xl md:text-2xl text-white font-medium">
-                Exceptional blends and single origins
+                Exceptional blends and Single Origin coffees
               </p>
             </div>
             <div className="mt-6 bg-black/30 backdrop-blur-sm rounded-lg px-6 py-4 max-w-4xl mx-auto">
               <p className="text-base md:text-lg text-white/90">
-                At The Roasting, each coffee starts with carefully selected green beans, stored by origin in dedicated silos and roasted in Milan using custom profiles for every single origin. Precision weighing, real-time temperature control and air cooling ensure that the blends and single origins you see here are consistent, repeatable and ready for busy cafés and restaurants.
+                At The Roasting, each coffee starts with carefully selected green beans, stored by origin in dedicated silos and roasted in Milan using a custom profile for every Single Origin coffee. Precision weighing, real-time temperature control and air cooling ensure that every blend and Single Origin coffee is consistent, repeatable and ready for busy cafés and restaurants.
               </p>
             </div>
           </div>
@@ -126,11 +126,11 @@ export default function ProductsPage() {
                 Blends
               </Button>
               <Button
-                variant={activeFilter === "Monorigin" ? "default" : "ghost"}
-                onClick={() => setActiveFilter("Monorigin")}
-                className={`rounded-full ${activeFilter === "Monorigin" ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
+                variant={activeFilter === "Single Origin" ? "default" : "ghost"}
+                onClick={() => setActiveFilter("Single Origin")}
+                className={`rounded-full ${activeFilter === "Single Origin" ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
               >
-                Single Origins
+                Single Origin
               </Button>
             </div>
 

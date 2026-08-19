@@ -10,9 +10,9 @@ import { SITE_IMAGES } from "../components/shared/SiteImages";
 import SampleRequestForm from "../components/connect/SampleRequestForm";
 
 export default function ConnectPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submissionResult, setSubmissionResult] = useState(null);
 
-  if (submitted) {
+  if (submissionResult) {
     return (
       <div className="min-h-screen">
         <HeroBackground
@@ -35,9 +35,17 @@ export default function ConnectPage() {
                 Thank you for your request!
               </h2>
               <p className="text-lg text-[#201e20]/70 mb-8">
-                We'll be in touch within 24 hours to arrange your free sample delivery. 
-                Looking forward to working with you!
+                Your details have been saved. We'll be in touch within 24 hours to arrange your free sample delivery.
               </p>
+              <div className="mb-8 rounded-xl border border-[#704214]/15 bg-[#f5f1ec] px-5 py-4 text-left">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#704214]">Request reference</p>
+                <p className="mt-1 font-semibold text-[#201e20]">{submissionResult.reference}</p>
+                <p className="mt-2 text-sm text-[#201e20]/65">
+                  {submissionResult.allNotificationsSent
+                    ? "A confirmation email has been sent to the address you provided."
+                    : "Your request is safely recorded. If your confirmation email does not arrive, our team can still find your request using this reference."}
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to={createPageUrl("Products")}>
                   <Button className="bg-[#704214] hover:bg-[#201e20] text-white rounded-full px-6 py-3">
@@ -88,7 +96,7 @@ export default function ConnectPage() {
       </HeroBackground>
 
       <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12 -mt-24 relative z-10">
-        <SampleRequestForm onSubmitted={() => setSubmitted(true)} />
+        <SampleRequestForm onSubmitted={setSubmissionResult} />
       </div>
     </div>
   );

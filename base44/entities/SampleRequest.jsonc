@@ -1,0 +1,46 @@
+{
+  "name": "SampleRequest",
+  "type": "object",
+  "properties": {
+    "reference": { "type": "string", "description": "Public request reference" },
+    "submittedAt": { "type": "string", "description": "ISO submission timestamp" },
+    "status": {
+      "type": "string",
+      "enum": ["received", "notified", "needs_attention"],
+      "description": "Overall request workflow status"
+    },
+    "administratorEmailStatus": {
+      "type": "string",
+      "enum": ["pending", "sent", "failed"]
+    },
+    "applicantEmailStatus": {
+      "type": "string",
+      "enum": ["pending", "sent", "failed"]
+    },
+    "businessName": { "type": "string" },
+    "businessType": { "type": "string" },
+    "location": { "type": "string" },
+    "currentSupplier": { "type": "string" },
+    "coffeeVolume": { "type": "string" },
+    "interestedProducts": { "type": "array", "items": { "type": "string" } },
+    "name": { "type": "string" },
+    "email": { "type": "string" },
+    "phone": { "type": "string" },
+    "position": { "type": "string" },
+    "deliveryAddress": { "type": "string" },
+    "preferredDeliveryTime": { "type": "string" },
+    "comments": { "type": "string" }
+  },
+  "required": [
+    "reference",
+    "submittedAt",
+    "status",
+    "businessName",
+    "businessType",
+    "location",
+    "coffeeVolume",
+    "name",
+    "email",
+    "deliveryAddress"
+  ]
+}

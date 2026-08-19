@@ -34,7 +34,7 @@ export default function Layout({ children }) {
   const navigation = [
     { name: "Home", href: createPageUrl("Home") },
     { name: "Our Story", href: createPageUrl("OurStory") },
-    { name: "Products", href: createPageUrl("Products") }
+    { name: "Our Coffee", href: createPageUrl("Products") }
   ];
 
   const isActivePage = (href) => {
@@ -237,7 +237,7 @@ export default function Layout({ children }) {
                 Quick Links
               </h4>
               <div className="space-y-2 text-sm">
-                <div><Link to={createPageUrl("Products")} className="hover:text-gray-300 transition-colors">Products</Link></div>
+                <div><Link to={createPageUrl("Products")} className="hover:text-gray-300 transition-colors">Our Coffee</Link></div>
                 <div><Link to={createPageUrl("Connect")} className="hover:text-gray-300 transition-colors">Request Sample</Link></div>
                 <div><Link to={createPageUrl("OurStory")} className="hover:text-gray-300 transition-colors">Our Story</Link></div>
               </div>

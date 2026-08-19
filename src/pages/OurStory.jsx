@@ -17,7 +17,7 @@ export default function OurStoryPage() {
     },
     {
       title: "Balanced profiles",
-      description: "Each single origin has its own roasting curve: temperature, timing and development are tuned to that specific coffee. Advanced sensors and monitoring devices allow the roaster to adjust in real time, creating balanced profiles that highlight origin character without tipping into harsh acidity or flat bitterness.",
+      description: "Each Single Origin coffee has its own roasting curve: temperature, timing and development are tuned to that specific coffee. Advanced sensors and monitoring devices allow the roaster to adjust in real time, creating balanced profiles that highlight origin character without tipping into harsh acidity or flat bitterness.",
       image: SITE_IMAGES.ourStoryBalancedProfiles
     }
   ];
@@ -180,7 +180,7 @@ export default function OurStoryPage() {
               {
                 icon: Coffee,
                 title: "Authentic Coffee",
-                description: "We select coffees for their quality, character and consistency, creating blends and single origins that remain true to the traditions of Italian roasting while meeting the expectations of today's speciality coffee market."
+                description: "We select coffees for their quality, character and consistency, creating blends and Single Origin coffees that remain true to the traditions of Italian roasting while meeting the expectations of today's speciality coffee market."
               },
               {
                 icon: Wrench,

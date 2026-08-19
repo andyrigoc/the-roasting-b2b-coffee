@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Coffee } from "@/api/entities";
-import { localCoffeeProducts } from "@/data/coffeeProducts";
+import { localCoffeeProducts, normaliseCoffeeProduct } from "@/data/coffeeProducts";
 
 import HeroSection from "../components/home/HeroSection";
 import IntroSection from "../components/home/IntroSection";
@@ -24,6 +24,8 @@ export default function HomePage() {
       if (!products?.length) {
         products = localCoffeeProducts;
       }
+
+      products = products.map(normaliseCoffeeProduct);
       
       // Filter to only those with featured_rank and take first 3
       let featured = products
@@ -42,6 +44,7 @@ export default function HomePage() {
     } catch (error) {
       console.error('Error loading products:', error);
       const featured = localCoffeeProducts
+        .map(normaliseCoffeeProduct)
         .filter(p => p.featured_rank !== null && p.featured_rank !== undefined)
         .sort((a, b) => a.featured_rank - b.featured_rank)
         .slice(0, 3);

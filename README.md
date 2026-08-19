@@ -1,17 +1,15 @@
 # The Roasting B2B Coffee
 
-## Contact form email
+## Sample request workflow
 
-The sample request form posts to `/api/contact`, which sends email through Resend.
+The sample request form uses the existing Base44 backend to:
 
-Required server environment variables:
+1. Validate and store every request as a `SampleRequest` record.
+2. Notify `info@theroastingltd.co.uk` with the complete request details.
+3. Send a confirmation email to the applicant.
+4. Record both email delivery attempts against the request.
 
-```env
-RESEND_API_KEY=re_xxxxxxxxx
-CONTACT_EMAIL_TO=info@theroastingltd.co.uk
-CONTACT_EMAIL_FROM=The Roasting <samples@theroastingltd.co.uk>
-CONTACT_REPLY_TO=info@theroastingltd.co.uk
-CONTACT_SEND_CONFIRMATION=true
-```
+No browser-exposed email credentials are required. The `SampleRequest` entity in
+`base44/entities/SampleRequest.jsonc` must be included when the Base44 app is deployed.
 
-`CONTACT_EMAIL_FROM` must use a domain verified in Resend before production sending will work.
+Run `npm run test:sample-request` to verify the storage and notification workflow.

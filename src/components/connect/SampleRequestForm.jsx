@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
 import { localCoffeeProducts } from "@/data/coffeeProducts";
+import { submitSampleRequest } from "@/services/sampleRequests";
 
 const steps = [
   "Business Information",
@@ -17,10 +18,29 @@ const steps = [
   "Confirmation"
 ];
 
+const requiredFieldsByStep = [
+  ["businessName", "businessType", "location"],
+  ["coffeeVolume"],
+  ["name", "email"],
+  ["deliveryAddress"],
+  [],
+];
+
+const fieldLabels = {
+  businessName: "Business name",
+  businessType: "Business type",
+  location: "Location",
+  coffeeVolume: "Monthly coffee volume",
+  name: "Full name",
+  email: "Email address",
+  deliveryAddress: "Delivery address",
+};
+
 export default function SampleRequestForm({ onSubmitted }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
   const [formData, setFormData] = useState({
     businessName: "",
     businessType: "",
@@ -42,6 +62,12 @@ export default function SampleRequestForm({ onSubmitted }) {
       ...prev,
       [field]: value
     }));
+    setFieldErrors((current) => {
+      if (!current[field]) return current;
+      const nextErrors = { ...current };
+      delete nextErrors[field];
+      return nextErrors;
+    });
   };
 
   const handleProductInterest = (product, checked) => {
@@ -52,8 +78,26 @@ export default function SampleRequestForm({ onSubmitted }) {
     }
   };
 
+  const validateStep = (step) => {
+    const errors = {};
+
+    requiredFieldsByStep[step].forEach((field) => {
+      if (!String(formData[field] || "").trim()) {
+        errors[field] = `${fieldLabels[field]} is required.`;
+      }
+    });
+
+    if (step === 2 && formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Enter a valid email address.";
+    }
+
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const nextStep = () => {
-    if (currentStep < steps.length - 1) {
+    if (currentStep < steps.length - 1 && validateStep(currentStep)) {
+      setSubmitError("");
       setCurrentStep(currentStep + 1);
     }
   };
@@ -71,25 +115,24 @@ export default function SampleRequestForm({ onSubmitted }) {
       return;
     }
 
+    const firstInvalidStep = requiredFieldsByStep.findIndex((fields, step) => {
+      if (fields.some((field) => !String(formData[field] || "").trim())) return true;
+      return step === 2 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+    });
+
+    if (firstInvalidStep !== -1) {
+      setCurrentStep(firstInvalidStep);
+      validateStep(firstInvalidStep);
+      setSubmitError("Please review the required fields before submitting.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.error || "We could not send your request right now. Please try again.");
-      }
-
-      onSubmitted();
+      const result = await submitSampleRequest(formData);
+      onSubmitted(result);
     } catch (error) {
       setSubmitError(error.message || "We could not send your request right now. Please try again.");
     } finally {
@@ -121,6 +164,11 @@ export default function SampleRequestForm({ onSubmitted }) {
       </div>
 
       <form onSubmit={handleSubmit} className="p-6 md:p-8">
+        {Object.keys(fieldErrors).length > 0 && (
+          <div className="mb-6 rounded-xl border border-[#9b5528]/30 bg-[#f8eee5] px-4 py-3 text-sm text-[#622700]" role="alert">
+            Please complete the required fields before continuing.
+          </div>
+        )}
         <motion.div
           key={currentStep}
           initial={{ opacity: 0, x: 20 }}
@@ -214,7 +262,7 @@ export default function SampleRequestForm({ onSubmitted }) {
               </div>
 
               <div>
-                <Label htmlFor="coffeeVolume">Monthly Coffee Volume</Label>
+                <Label htmlFor="coffeeVolume">Monthly Coffee Volume *</Label>
                 <Select value={formData.coffeeVolume} onValueChange={(value) => updateFormData("coffeeVolume", value)}>
                   <SelectTrigger className="rounded-full">
                     <SelectValue placeholder="How much coffee do you use monthly?" />
@@ -404,26 +452,29 @@ export default function SampleRequestForm({ onSubmitted }) {
                 </div>
               </div>
 
-              <div className="bg-[#f5f1ec] border border-[#e8ddd2] rounded-xl p-5">
+              <div className="overflow-hidden rounded-2xl bg-[#201e20] text-white shadow-lg">
+                <div className="border-b border-white/10 px-6 py-5">
                 <h3 
-                  className="font-semibold text-[#201e20] mb-3 title-card"
+                  className="font-semibold text-white title-card"
                 >
                   What happens next?
                 </h3>
+                <p className="mt-1 text-sm text-white/65">A simple, personal process from request to tasting.</p>
+                </div>
                 <ul 
-                  className="text-sm text-[#201e20]/80 space-y-2"
+                  className="grid gap-px bg-white/10 sm:grid-cols-3"
                 >
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
-                    <span>We'll contact you within 24 hours</span>
+                  <li className="flex gap-3 bg-[#201e20] px-5 py-5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#c99058] text-xs font-bold text-[#201e20]">1</span>
+                    <span className="pt-1 text-sm text-white/80">We'll contact you within 24 hours</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
-                    <span>Free samples delivered to your door</span>
+                  <li className="flex gap-3 bg-[#201e20] px-5 py-5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#c99058] text-xs font-bold text-[#201e20]">2</span>
+                    <span className="pt-1 text-sm text-white/80">We'll select coffees for your business</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#704214] mt-1.5 flex-shrink-0" />
-                    <span>Follow-up call to discuss your needs</span>
+                  <li className="flex gap-3 bg-[#201e20] px-5 py-5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#c99058] text-xs font-bold text-[#201e20]">3</span>
+                    <span className="pt-1 text-sm text-white/80">We'll arrange delivery and follow up</span>
                   </li>
                 </ul>
               </div>

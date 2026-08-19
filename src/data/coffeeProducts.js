@@ -1,8 +1,8 @@
 export const localCoffeeProducts = [
   {
-    country: "Mix of all Single Origins",
+    country: "A blend of Single Origin coffees",
     altitude: "n/a",
-    sub_variety: "Mix of all Single Origins",
+    sub_variety: "A blend of Single Origin coffees",
     image_url: "https://media.base44.com/images/public/68ca7a4061ebed2270e358d1/50e65db43_zoagli-web.png",
     commercial_name: "Zoagli",
     roast_agtron: 55,
@@ -12,14 +12,14 @@ export const localCoffeeProducts = [
     tasting_notes: "Intense and powerful, featuring dark cocoa, roasted cereals and warming spices, with a dense crema and a persistent, robust finish.",
     variety: "90% Robusta / 10% Arabica",
     category: "Blend",
-    region: "Mix of all Single Origins",
+    region: "A blend of Single Origin coffees",
     id: "69fc7af6ed23410208d777bc",
     created_date: "2026-05-07T11:43:50.217000",
   },
   {
-    country: "Mix of all Single Origins",
+    country: "A blend of Single Origin coffees",
     altitude: "n/a",
-    sub_variety: "Mix of all Single Origins",
+    sub_variety: "A blend of Single Origin coffees",
     image_url: "https://media.base44.com/images/public/68ca7a4061ebed2270e358d1/840e305b3_decaf-web.png",
     commercial_name: "Decaf",
     roast_agtron: null,
@@ -29,7 +29,7 @@ export const localCoffeeProducts = [
     tasting_notes: "Smooth and rounded, offering notes of milk chocolate, toasted hazelnuts and caramel, with balanced sweetness and all the flavour, without the caffeine.",
     variety: "Decaf Coffee Beans",
     category: "Blend",
-    region: "Mix of all Single Origins",
+    region: "A blend of Single Origin coffees",
     id: "69fc7af6ed23410208d777bd",
     created_date: "2026-05-07T11:43:50.217000",
   },
@@ -45,7 +45,7 @@ export const localCoffeeProducts = [
     acidity: 6.5,
     tasting_notes: "Aromas of black pepper with a rich chocolate finish.",
     variety: "Robusta",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Karnataka, Kerala, Tamil Nadu",
     id: "693071df6dadc53ebd0525a8",
     created_date: "2025-12-03T17:22:39.653000",
@@ -62,7 +62,7 @@ export const localCoffeeProducts = [
     acidity: 6.5,
     tasting_notes: "Taste of wood and dark caramel, in some cases of bitter cocoa.",
     variety: "Robusta",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Bukoba",
     id: "693071df6dadc53ebd0525aa",
     created_date: "2025-12-03T17:22:39.653000",
@@ -79,15 +79,15 @@ export const localCoffeeProducts = [
     acidity: 6.5,
     tasting_notes: "Rich-bodied aroma with a mellow flavour and subtle spicy, woody notes.",
     variety: "Robusta",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Mendo, Masaka",
     id: "693071df6dadc53ebd0525ab",
     created_date: "2025-12-03T17:22:39.653000",
   },
   {
-    country: "Mix of all Single Origins",
+    country: "A blend of Single Origin coffees",
     altitude: "n/a",
-    sub_variety: "Mix of all Single Origins",
+    sub_variety: "A blend of Single Origin coffees",
     image_url: "https://media.base44.com/images/public/68ca7a4061ebed2270e358d1/6f0372314_portofino-web.png",
     commercial_name: "Portofino",
     roast_agtron: 55,
@@ -97,7 +97,7 @@ export const localCoffeeProducts = [
     tasting_notes: "A smooth, well-balanced cup with notes of caramel, cocoa and toasted almonds, complemented by gentle fruit sweetness and a velvety body.",
     variety: "70% Arabica / 30% Robusta",
     category: "Blend",
-    region: "Mix of all Single Origins",
+    region: "A blend of Single Origin coffees",
     id: "693071df6dadc53ebd0525a5",
     created_date: "2025-12-03T17:22:39.653000",
   },
@@ -113,15 +113,15 @@ export const localCoffeeProducts = [
     acidity: 6.25,
     tasting_notes: "Bright citrus acidity with aromas of strawberry, plum and dark chocolate.",
     variety: "Arabica",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Huehuetenango",
     id: "693071df6dadc53ebd0525a6",
     created_date: "2025-12-03T17:22:39.653000",
   },
   {
-    country: "Mix of all Single Origins",
+    country: "A blend of Single Origin coffees",
     altitude: "n/a",
-    sub_variety: "Mix of all Single Origins",
+    sub_variety: "A blend of Single Origin coffees",
     image_url: "https://media.base44.com/images/public/68ca7a4061ebed2270e358d1/0f6152e63_cinqueterre-web.png",
     commercial_name: "Cinque Terre",
     roast_agtron: 55,
@@ -131,7 +131,7 @@ export const localCoffeeProducts = [
     tasting_notes: "Rich and full-bodied, delivering dark chocolate, roasted nuts and spice, with a bold crema and a long, satisfying finish.",
     variety: "50% Arabica / 50% Robusta",
     category: "Blend",
-    region: "Mix of all Single Origins",
+    region: "A blend of Single Origin coffees",
     id: "693071df6dadc53ebd0525a4",
     created_date: "2025-12-03T17:22:39.653000",
   },
@@ -164,7 +164,7 @@ export const localCoffeeProducts = [
     acidity: 7,
     tasting_notes: "Sweet, fruity fragrance with gentle notes of caramel.",
     variety: "Arabica",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Minas Gerais",
     id: "693071df6dadc53ebd0525a9",
     created_date: "2025-12-03T17:22:39.653000",
@@ -181,9 +181,21 @@ export const localCoffeeProducts = [
     acidity: 6.75,
     tasting_notes: "Hints of almond and cocoa.",
     variety: "Arabica",
-    category: "Monorigin",
+    category: "Single Origin",
     region: "Santa Barbara, Comayagua",
     id: "693071df6dadc53ebd0525a7",
     created_date: "2025-12-03T17:22:39.653000",
   },
 ];
+
+const legacySingleOriginPattern = /\b(?:mono[ -]?origins?|monorigins?|single origins?)\b/gi;
+
+export function normaliseCoffeeProduct(product) {
+  const normaliseText = (value) => typeof value === "string"
+    ? value.replace(legacySingleOriginPattern, "Single Origin")
+    : value;
+
+  return Object.fromEntries(
+    Object.entries(product).map(([key, value]) => [key, normaliseText(value)])
+  );
+}

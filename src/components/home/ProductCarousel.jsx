@@ -20,14 +20,14 @@ export default function ProductCarousel({ products, loading }) {
               Featured Coffee
             </h2>
             <p className="text-lg text-gray-600">
-              Discover our most popular blends and single origins
+              Discover our most popular blends and Single Origin coffees
             </p>
           </div>
           <Link 
             to={createPageUrl("Products")}
             className="hidden md:inline-flex items-center text-[#704214] hover:text-[#201e20] font-medium transition-colors duration-200"
           >
-            View All Products
+            View All Coffee
             <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
         </div>
@@ -64,7 +64,7 @@ export default function ProductCarousel({ products, loading }) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       <div className="absolute top-4 left-4">
                         <Badge className={`${product.category === 'Blend' ? 'bg-[#704214]' : 'bg-[#201e20]'} text-white`}>
-                          {product.category === 'Monorigin' ? 'Single Origin' : product.category}
+                          {product.category}
                         </Badge>
                       </div>
                     </div>
@@ -100,7 +100,7 @@ export default function ProductCarousel({ products, loading }) {
             to={createPageUrl("Products")}
             className="inline-flex items-center text-[#704214] hover:text-[#201e20] font-medium transition-colors duration-200"
           >
-            View All Products
+            View All Coffee
             <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
         </div>
