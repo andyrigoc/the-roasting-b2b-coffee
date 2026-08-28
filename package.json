@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test:contact": "node scripts/test-contact-api.mjs",
     "test:sample-request": "node scripts/test-sample-request.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

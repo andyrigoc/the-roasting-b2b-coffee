@@ -1,16 +1,12 @@
-import { SampleRequest } from "@/api/entities";
-import { SendEmail } from "@/api/integrations";
-import { runSampleRequestWorkflow } from "@/lib/sampleRequestWorkflow";
-
-function createReference() {
-  return crypto.randomUUID().slice(0, 8).toUpperCase();
-}
-
-export function submitSampleRequest(payload) {
-  return runSampleRequestWorkflow(payload, {
-    createReference,
-    createRecord: (record) => SampleRequest.create(record),
-    updateRecord: (id, updates) => SampleRequest.update(id, updates),
-    sendEmail: (message) => SendEmail(message),
+export async function submitSampleRequest(payload) {
+  const response = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(result.error || "We could not send your request right now. Please try again.");
+  }
+  return result;
 }

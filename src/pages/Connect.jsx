@@ -35,7 +35,7 @@ export default function ConnectPage() {
                 Thank you for your request!
               </h2>
               <p className="text-lg text-[#201e20]/70 mb-8">
-                Your details have been saved. We'll be in touch within 24 hours to arrange your free sample delivery.
+                Your request has been emailed to our team. We'll be in touch within 24 hours to arrange your free sample delivery.
               </p>
               <div className="mb-8 rounded-xl border border-[#704214]/15 bg-[#f5f1ec] px-5 py-4 text-left">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#704214]">Request reference</p>
@@ -43,7 +43,7 @@ export default function ConnectPage() {
                 <p className="mt-2 text-sm text-[#201e20]/65">
                   {submissionResult.allNotificationsSent
                     ? "A confirmation email has been sent to the address you provided."
-                    : "Your request is safely recorded. If your confirmation email does not arrive, our team can still find your request using this reference."}
+                    : "Our team has received your request. Keep this reference in case your confirmation email does not arrive."}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
