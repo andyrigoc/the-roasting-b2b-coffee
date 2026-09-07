@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
 
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
-const DEFAULT_ADMIN_EMAIL = "info@theroastingltd.co.uk";
-const DEFAULT_FROM_EMAIL = "The Roasting <samples@theroastingltd.co.uk>";
+const DEFAULT_ADMIN_EMAIL = "info@theroasting.co.uk";
+const DEFAULT_FROM_EMAIL = "The Roasting <info@theroasting.co.uk>";
 
 const requiredFields = [
   ["businessName", "Business name"],
@@ -66,7 +66,8 @@ function detailRow(label, value) {
 }
 
 function emailShell(title, eyebrow, content) {
-  return `<!doctype html><html><body style="margin:0;background:#f5f1ec;font-family:Arial,sans-serif;color:#201e20"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="padding:28px 12px"><tr><td align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#fff;border:1px solid #e8ddd2;border-radius:14px;overflow:hidden"><tr><td style="background:#622700;padding:28px 32px"><p style="margin:0 0 8px;color:#f2d7bd;font-size:13px;letter-spacing:.08em;text-transform:uppercase">${escapeHtml(eyebrow)}</p><h1 style="margin:0;color:#fff;font-size:28px;line-height:1.25">${escapeHtml(title)}</h1></td></tr><tr><td style="padding:28px 32px">${content}</td></tr></table></td></tr></table></body></html>`;
+  const siteUrl = (process.env.PUBLIC_SITE_URL || "https://www.theroasting.co.uk").replace(/\/+$/, "");
+  return `<!doctype html><html><body style="margin:0;background:#f5f1ec;font-family:Arial,sans-serif;color:#201e20"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="padding:28px 12px"><tr><td align="center"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#fff;border:1px solid #e8ddd2;border-radius:14px;overflow:hidden"><tr><td align="center" style="background:#fff;padding:22px 32px 18px"><img src="${siteUrl}/Logo.png" width="230" alt="The Roasting - 1947 - Tradizione Italiana" style="display:block;width:230px;max-width:100%;height:auto;border:0"></td></tr><tr><td style="background:#622700;padding:24px 32px"><p style="margin:0 0 8px;color:#f2d7bd;font-size:13px;letter-spacing:.08em;text-transform:uppercase">${escapeHtml(eyebrow)}</p><h1 style="margin:0;color:#fff;font-size:28px;line-height:1.25">${escapeHtml(title)}</h1></td></tr><tr><td style="padding:28px 32px">${content}</td></tr></table></td></tr></table></body></html>`;
 }
 
 function buildAdministratorEmail(request, reference, from, adminEmail) {

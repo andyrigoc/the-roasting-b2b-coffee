@@ -36,8 +36,7 @@ export default function ProductCard({ product, onClick, index }) {
         <img
           src={product.image_url || "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=80"}
           alt={product.commercial_name}
-          className="w-full h-full object-cover"
-          style={product.category === 'Blend' ? { filter: 'sepia(0.12) saturate(0.95) contrast(1.03) brightness(0.98)' } : undefined}
+          className="coffee-image-tone w-full h-full object-cover transition-transform duration-500 hover:scale-[1.02]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         <div className="absolute top-3 left-3">

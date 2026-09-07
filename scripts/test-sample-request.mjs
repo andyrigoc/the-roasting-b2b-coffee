@@ -44,7 +44,7 @@ assert.equal(success.allNotificationsSent, true);
 assert.equal(storedRecords.length, 1);
 assert.equal(storedRecords[0].email, "applicant@example.com");
 assert.equal(messages.length, 2);
-assert.equal(messages[0].to, "info@theroastingltd.co.uk");
+assert.equal(messages[0].to, "info@theroasting.co.uk");
 assert.equal(messages[1].to, "applicant@example.com");
 assert.equal(updates[0].update.status, "notified");
 

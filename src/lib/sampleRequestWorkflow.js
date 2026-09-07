@@ -1,4 +1,4 @@
-const ADMIN_EMAIL = "info@theroastingltd.co.uk";
+const ADMIN_EMAIL = "info@theroasting.co.uk";
 
 const businessTypeLabels = {
   "independent-cafe": "Independent Café",
@@ -123,7 +123,7 @@ export function buildApplicantEmail(request, reference) {
       "We have saved your details and will be in touch within 24 hours to arrange your sample delivery.",
       `Coffee requested: ${text(request.interestedProducts, "A tailored coffee selection")}`,
       "",
-      "If anything changes, reply to info@theroastingltd.co.uk.",
+      "If anything changes, reply to info@theroasting.co.uk.",
       "",
       "The Roasting team",
     ].join("\n"),

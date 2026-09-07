@@ -59,7 +59,7 @@ export default function ProductCarousel({ products, loading }) {
                       <img
                         src={product.image_url || "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=80"}
                         alt={product.commercial_name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="coffee-image-tone w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       <div className="absolute top-4 left-4">

@@ -58,7 +58,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
             <img
               src={product.image_url || "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80"}
               alt={product.commercial_name}
-              className="w-full h-full object-cover"
+              className="coffee-image-tone w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             

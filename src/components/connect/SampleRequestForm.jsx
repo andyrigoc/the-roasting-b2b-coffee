@@ -290,6 +290,16 @@ export default function SampleRequestForm({ onSubmitted }) {
                       <Label htmlFor={product.id} className="font-normal">{product.commercial_name}</Label>
                     </div>
                   ))}
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="blend-specification-summary"
+                      checked={formData.interestedProducts.includes("Summary of product specifications for blends")}
+                      onCheckedChange={(checked) => handleProductInterest("Summary of product specifications for blends", checked)}
+                    />
+                    <Label htmlFor="blend-specification-summary" className="font-normal">
+                      Summary of product specifications for blends
+                    </Label>
+                  </div>
                 </div>
               </div>
             </div>

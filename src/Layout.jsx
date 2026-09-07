@@ -98,7 +98,7 @@ export default function Layout({ children }) {
               <img
                 src="/Logo.png"
                 alt="The Roasting, Tradizione Italiana"
-                className="h-20 w-20 object-contain sm:h-24 sm:w-24"
+                className={`h-16 w-auto object-contain transition-[filter] duration-300 sm:h-20 ${scrolled || mobileMenuOpen ? '' : 'brightness-0 invert'}`}
               />
             </Link>
 
@@ -205,7 +205,7 @@ export default function Layout({ children }) {
                   <img
                     src="/Logo.png"
                     alt="The Roasting, Tradizione Italiana"
-                    className="h-32 w-32 object-contain"
+                    className="h-24 w-auto object-contain brightness-0 invert"
                   />
                 </Link>
               </div>
@@ -222,7 +222,7 @@ export default function Layout({ children }) {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  <a href="mailto:info@theroastingltd.co.uk" className="hover:text-white transition-colors">info@theroastingltd.co.uk</a>
+                  <a href="mailto:info@theroasting.co.uk" className="hover:text-white transition-colors">info@theroasting.co.uk</a>
                 </div>
                 <div className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />

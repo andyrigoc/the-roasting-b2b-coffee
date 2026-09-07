@@ -146,6 +146,10 @@ button:focus-visible {
   }
 }
 
+.coffee-image-tone {
+  filter: sepia(0.24) saturate(0.82) contrast(1.05) brightness(0.97);
+}
+
 
 
 @layer base {

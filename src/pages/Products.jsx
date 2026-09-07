@@ -29,7 +29,18 @@ export default function ProductsPage() {
   const loadProducts = async () => {
     try {
       const data = await Coffee.list('-created_date');
-      setProducts((data?.length ? data : localCoffeeProducts).map(normaliseCoffeeProduct));
+      const sourceProducts = data?.length ? [...data] : [...localCoffeeProducts];
+      const personalisedBlend = localCoffeeProducts.find(
+        (product) => product.commercial_name === "Personalised Blend"
+      );
+
+      if (personalisedBlend && !sourceProducts.some(
+        (product) => product.commercial_name?.toLowerCase() === "personalised blend"
+      )) {
+        sourceProducts.push(personalisedBlend);
+      }
+
+      setProducts(sourceProducts.map(normaliseCoffeeProduct));
     } catch (error) {
       console.error('Error loading products:', error);
       setProducts(localCoffeeProducts.map(normaliseCoffeeProduct));

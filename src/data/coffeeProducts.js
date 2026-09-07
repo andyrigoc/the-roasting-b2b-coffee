@@ -1,5 +1,22 @@
 export const localCoffeeProducts = [
   {
+    country: "Tailored to your business",
+    altitude: "n/a",
+    sub_variety: "Selected to your brief",
+    image_url: "/personalised-blend.jpg",
+    commercial_name: "Personalised Blend",
+    roast_agtron: null,
+    body: null,
+    featured_rank: null,
+    acidity: null,
+    tasting_notes: "A bespoke blend developed around your equipment, menu, flavour goals and service volume, with ongoing support to keep every cup consistent.",
+    variety: "Arabica and Robusta composition tailored to your brief",
+    category: "Blend",
+    region: "Developed around your menu and service needs",
+    id: "personalised-blend",
+    created_date: "2026-09-07T00:00:00.000000",
+  },
+  {
     country: "A blend of Single Origin coffees",
     altitude: "n/a",
     sub_variety: "A blend of Single Origin coffees",
