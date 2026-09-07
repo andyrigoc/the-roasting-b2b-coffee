@@ -97,8 +97,8 @@ export default function Layout({ children }) {
             >
               <img
                 src="/Logo.png"
-                alt="The Roasting, Tradizione Italiana"
-                className={`h-12 w-auto max-w-[132px] object-contain transition-[filter] duration-300 sm:h-14 sm:max-w-[150px] ${scrolled || mobileMenuOpen ? '' : 'brightness-0 invert'}`}
+                alt="The Roasting, established 2014, Tradizione Italiana"
+                className="h-16 w-16 rounded-full object-cover sm:h-20 sm:w-20 lg:h-24 lg:w-24"
               />
             </Link>
 
@@ -204,8 +204,8 @@ export default function Layout({ children }) {
                 >
                   <img
                     src="/Logo.png"
-                    alt="The Roasting, Tradizione Italiana"
-                    className="h-24 w-auto object-contain brightness-0 invert"
+                    alt="The Roasting, established 2014, Tradizione Italiana"
+                    className="h-24 w-24 rounded-full object-cover"
                   />
                 </Link>
               </div>
