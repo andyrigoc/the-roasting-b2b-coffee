@@ -88,7 +88,7 @@ export default function Layout({ children }) {
       {/* Navigation Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || mobileMenuOpen ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2.5 sm:py-3">
+          <div className="flex justify-between items-center py-3">
             {/* Logo */}
             <Link
               to={createPageUrl("Home")}
@@ -98,7 +98,7 @@ export default function Layout({ children }) {
               <img
                 src="/Logo.png"
                 alt="The Roasting, Tradizione Italiana"
-                className={`h-16 w-auto object-contain transition-[filter] duration-300 sm:h-20 ${scrolled || mobileMenuOpen ? '' : 'brightness-0 invert'}`}
+                className={`h-12 w-auto max-w-[132px] object-contain transition-[filter] duration-300 sm:h-14 sm:max-w-[150px] ${scrolled || mobileMenuOpen ? '' : 'brightness-0 invert'}`}
               />
             </Link>
 

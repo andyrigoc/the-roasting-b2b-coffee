@@ -96,11 +96,11 @@ export default function ProductsPage() {
         src={SITE_IMAGES.productsHero}
         alt="Our coffee products"
         priority={true}
-        className="h-[60vh]"
+        className="h-[720px] sm:h-[660px] md:h-[640px] lg:h-[620px]"
       >
-        <div className="h-full flex items-center justify-center">
+        <div className="h-full flex justify-center px-0 pt-32 pb-10 sm:pt-36 md:pt-40 lg:pt-44">
           <div className="text-center text-white px-6">
-            <h1 className="text-3xl md:text-6xl font-semibold mb-4 title-hero drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-4 title-hero drop-shadow-lg">
               Our Coffee
             </h1>
             <div className="bg-black/40 backdrop-blur-sm rounded-lg px-6 py-3 inline-block">
