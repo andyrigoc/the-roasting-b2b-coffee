@@ -96,9 +96,9 @@ export default function Layout({ children }) {
               aria-label="The Roasting — Home"
             >
               <img
-                src="/Logo.png"
-                alt="The Roasting, established 2014, Tradizione Italiana"
-                className="h-16 w-16 rounded-full object-cover sm:h-20 sm:w-20 lg:h-24 lg:w-24"
+                src={scrolled || mobileMenuOpen ? "/Logo.png" : "/Logo-dark.png"}
+                alt="The Roasting, 1947, Tradizione Italiana"
+                className="h-14 w-auto max-w-[128px] object-contain sm:h-16 sm:max-w-[146px] lg:h-20 lg:max-w-[180px]"
               />
             </Link>
 
@@ -203,9 +203,9 @@ export default function Layout({ children }) {
                   aria-label="The Roasting — Home"
                 >
                   <img
-                    src="/Logo.png"
-                    alt="The Roasting, established 2014, Tradizione Italiana"
-                    className="h-24 w-24 rounded-full object-cover"
+                    src="/Logo-dark.png"
+                    alt="The Roasting, 1947, Tradizione Italiana"
+                    className="h-24 w-auto max-w-[220px] object-contain"
                   />
                 </Link>
               </div>
