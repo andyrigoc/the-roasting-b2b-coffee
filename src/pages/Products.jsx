@@ -18,11 +18,29 @@ import { localCoffeeProducts, normaliseCoffeeProduct } from "@/data/coffeeProduc
 import ProductCard from "../components/products/ProductCard";
 import ProductDetailModal from "../components/products/ProductDetailModal";
 
+const catalogueFilters = [
+  { value: "blends", label: "All Blends" },
+  { value: "single-origin", label: "Single Origin" },
+  { value: "personalised-blends", label: "Personalised Blends" },
+  { value: "decaf", label: "Decaf" },
+];
+
+function matchesCatalogueFilter(product, filter) {
+  const name = product.commercial_name?.toLowerCase() || "";
+  const isPersonalised = name.includes("personalised blend") || name.includes("personalized blend");
+  const isDecaf = name.includes("decaf");
+
+  if (filter === "single-origin") return product.category === "Single Origin";
+  if (filter === "personalised-blends") return isPersonalised;
+  if (filter === "decaf") return isDecaf;
+  return product.category === "Blend" && !isPersonalised && !isDecaf;
+}
+
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("blends");
   const [sortBy, setSortBy] = useState("name");
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -56,9 +74,7 @@ export default function ProductsPage() {
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products;
 
-    if (activeFilter !== "all") {
-      filtered = filtered.filter(product => product.category === activeFilter);
-    }
+    filtered = filtered.filter((product) => matchesCatalogueFilter(product, activeFilter));
 
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
@@ -122,27 +138,16 @@ export default function ProductsPage() {
         <div className="sticky top-[76px] z-30 bg-[#ede8d0]/95 backdrop-blur-sm py-4 mb-8 -mx-4 px-4 rounded-b-lg">
           <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
             <div className="flex flex-wrap gap-2">
-              <Button
-                variant={activeFilter === "all" ? "default" : "ghost"}
-                onClick={() => setActiveFilter("all")}
-                className={`rounded-full ${activeFilter === "all" ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
-              >
-                All Coffee
-              </Button>
-              <Button
-                variant={activeFilter === "Blend" ? "default" : "ghost"}
-                onClick={() => setActiveFilter("Blend")}
-                className={`rounded-full ${activeFilter === "Blend" ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
-              >
-                Blends
-              </Button>
-              <Button
-                variant={activeFilter === "Single Origin" ? "default" : "ghost"}
-                onClick={() => setActiveFilter("Single Origin")}
-                className={`rounded-full ${activeFilter === "Single Origin" ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
-              >
-                Single Origin
-              </Button>
+              {catalogueFilters.map((filter) => (
+                <Button
+                  key={filter.value}
+                  variant={activeFilter === filter.value ? "default" : "ghost"}
+                  onClick={() => setActiveFilter(filter.value)}
+                  className={`rounded-full ${activeFilter === filter.value ? "bg-[#704214] hover:bg-[#201e20] text-white" : "text-[#201e20] hover:bg-[#704214]/10"}`}
+                >
+                  {filter.label}
+                </Button>
+              ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
